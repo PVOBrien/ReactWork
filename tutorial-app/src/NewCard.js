@@ -10,7 +10,8 @@ class NewCard extends Component {
       info: [
         { title: 'Bday: ', text: ' April 5th, 1984' },
         { title: 'Address', text: ' 1108 Mill Creek Blvd' },
-        { title: 'Phone: ', text: ' 253-656-1883' }
+        { title: 'Phone: ', text: ' 253-656-1883' },
+        { title: 'Email: ', text: ' PVOVideo@outlook.com'}
       ]
     }
   }
@@ -31,9 +32,14 @@ class NewCard extends Component {
 
           <main>
             <ul>
-              <li><span> {info[0].title} </span> {info.[0].text} </li>
-              <li><span>Address:</span> 1108 Mill Creek Blvd</li>
-              <li><span>Ph No:</span> 1.253.656.1883</li>
+              {info.map((row, index) => {
+                return (
+                  <li key={index}>
+                    <span>{row.title}</span>
+                    { row.text ? row.text : 'N/A' } {/* oh yeah. */}
+                  </li>
+                )
+              })}
             </ul>
           </main>
         </section>
