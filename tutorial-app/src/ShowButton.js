@@ -16,18 +16,22 @@ class ShowButton extends Component {
 
   render() {
     return (
-    <>
-    <section>
-    <div id="buttonEr">
-      <header>CHECK IT</header>
-      <button className="toggles"
-        onClick={ this.handleDeetsClick }>
-        For My Deets
-      </button>
-      <button className="toggles">The Basics</button>
-    </div>
-    </section>
-    </>
+      <>
+        <section>
+              <header>
+                <h3>CHECK IT</h3>
+                </header>
+          <main>
+            <div id="buttonEr">
+              <button className="toggles"
+                onClick={this.handleDeetsClick}>
+                For My Deets
+              </button>
+              <button className="toggles">The Basics</button>
+            </div>
+          </main>
+        </section>
+      </>
     )
   }
 

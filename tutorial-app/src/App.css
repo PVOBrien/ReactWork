@@ -1,42 +1,47 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+* {
+  margin: auto;
+  padding: 22px 10px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 label {
   font-family: sans-serif;
 }
 
+input, button {
+  border: 1px solid #aaa;
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+button {
+  background-color: rgba(90, 90, 90, .6);
+  border-color: #7b90a1;
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* margin-left: 20px; */
+}
+
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-left: 20px;
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+  padding: 0px 00px 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 30px auto;
+  max-width: 400px;
+  box-shadow: 0 10px 40px -14px rgba(100, 100, 100, 1),
+  0 10px 40px -10px rgba(155, 155, 200, 1);
+}
 
 #buttonEr {
   display: flex;
@@ -55,6 +60,14 @@ label {
 
 #buttonEr button {
   flex-basis: 40%;
+}
+
+#insert {
+  margin-left: 20px
+}
+
+.toggles {
+  margin: 0px;
 }
 
 .error {

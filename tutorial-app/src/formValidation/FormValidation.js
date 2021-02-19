@@ -24,7 +24,7 @@ class FormValidation extends Component {
     )
 
     this.setState({
-      [name]: value
+      [name]: value // what do the brackets do here? if brackets aren't included, it does not refer to the variable "name" above.
     })
 
   }
@@ -32,14 +32,12 @@ class FormValidation extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
 
-    console.log(this.validateAllTheField());
-
     const isFormValid = this.validateAllTheField();
 
     if (isFormValid) {
       this.setState((state) => {
         return {
-          submitted: state.submitted + 1
+          submitted: state.submitted + 1 // NOT ABLE TO BE ++ incremented. Must be +1ed. why?
         }
       })
     }
@@ -58,13 +56,9 @@ class FormValidation extends Component {
       errors['firstName'] = 'UNFILLED!';
     }
 
-    if (!feedback) {
-      errors['feedback'] = 'Gimme FeedBaCk';
-    }
+    if (!feedback) { errors['feedback'] = 'Gimme FeedBaCk'; }
 
-    if (!acceptedTerms) {
-      errors['acceptedTerms'] = 'Haven\'t. Need to.';
-    }
+    if (!acceptedTerms) { errors['acceptedTerms'] = 'Haven\'t. Need to.'; }
 
     this.setState({
       validationErrors: errors
@@ -74,18 +68,17 @@ class FormValidation extends Component {
 
   }
 
-
   render() {
 
     const {
       firstName: firstNameError,
       feedback: feedbackError,
       acceptedTerms: acceptedTermsError
-    } = this.state.validationErrors; // this whole code block allows for truncating otherwise long and needless repetition of object prefixes, instead just holding it all in a variable.s
+    } = this.state.validationErrors; // this whole code block allows for truncating otherwise long and needless repetition of object prefixes, instead just holding each in a variable.
 
     return (
       <>
-        <section className="new-card-container">
+        <section className="new-card-container" id="form-card">
           <header>
             <h2>Form Submissions: </h2>
           </header>

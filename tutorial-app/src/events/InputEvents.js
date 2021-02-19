@@ -21,7 +21,7 @@ class InputEase extends Component {
     this.handleTheSubmit = this.handleTheSubmit.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
   }
 
@@ -38,20 +38,20 @@ class InputEase extends Component {
   hereToClick() { // like any normal function
     console.log('Click In Function');
     // this.setState({
-      //   mouseClicked: this.state.mouseClicked + 1
-      // })
-      console.log(`Before setState ${this.state.mouseClicked}`);
-      this.setState((state) => {
-        return {
-          mouseClicked: state.mouseClicked + 1
-        }
-      })
+    //   mouseClicked: this.state.mouseClicked + 1
+    // })
+    console.log(`Before setState ${this.state.mouseClicked}`);
+    this.setState((state) => {
+      return {
+        mouseClicked: state.mouseClicked + 1
+      }
+    })
   }
 
   handleHereMouseToDown() { // DON'T FORGET TO BIND.
     console.log('_DOWN_');
     this.setState({
-        mouseDown: true
+      mouseDown: true
     })
   }
 
@@ -91,57 +91,76 @@ class InputEase extends Component {
   render() {
     return (
       <>
-      <section>
-        <h3>Moused Here:</h3>
-        <button
-          id="insert"
-          onClick = { this.hereToClick.bind(this) }
-          onMouseDown = { this.handleHereMouseToDown } // left side of equal sign is the function, it is NOT potato.
-          onMouseUp = { this.handleHereOnMouseUp }
-          > {/* how to call class function */}
+        <section>
+          <header>
+            <h3>Moused Here:</h3>
+          </header>
+          <main>
+            <button
+              id="insert"
+              onClick={this.hereToClick.bind(this)}
+              onMouseDown={this.handleHereMouseToDown} // left side of equal sign is the function, it is NOT potato.
+              onMouseUp={this.handleHereOnMouseUp} > {/* how to call class function */}
           CLICKEE
-        </button>
-        <p>Button down: { this.state.mouseDown ? 'true' : 'false' } </p>
-        <p>Button, CLICK: { this.state.mouseClicked } </p>
-      </section>
+          </button>
+            <p>Button down: {this.state.mouseDown ? 'true' : 'false'} </p>
+            <p>Button, CLICK: {this.state.mouseClicked} </p>
+          </main>
+        </section>
 
-      <section>
-        <h3>HOWDY</h3>
-        <input
-          type="text"
-          onChange={this.handleOnChange}
-          />
-          <p>Inputted: {this.state.inputText}</p>
-      </section>
+        <section>
+          <header>
+            <h3>HOWDY</h3>
+          </header>
+          <main>
+            <input
+              type="text"
+              onChange={this.handleOnChange}
+            />
+            <p>Inputted: {this.state.inputText}</p>
+          </main>
+        </section>
 
-      <section>
-        <div>
-          <h3> Window Scroll Position (Y):</h3>
-          <p>y: {this.state.windowScrollY}</p>
-        </div>
-      </section>
+        <section>
+          <div>
+            <header>
+              <h3> Window Scroll Position (Y):</h3>
+            </header>
+            <main>
+              <p>y: {this.state.windowScrollY}</p>
+            </main>
+          </div>
+        </section>
 
-      <section>
-        <h3>Form Submit events:</h3>
-        <form onSubmit={this.handleTheSubmit}>
-          <input
-            type="text"
-            value={this.state.formInputText}
-            onChange={this.handleTheChangeForm}
-          />
-          <button type="submit">Submit</button>
-          <p>Input value: {this.state.formInputText}</p>
-          <p>Submitted value: {this.state.formInputTextSubmitted}</p>
-        </form>
-      </section>
+        <section>
+          <header>
+            <h3>Form Submit events:</h3>
+          </header>
+          <main>
+            <form onSubmit={this.handleTheSubmit}>
+              <input
+                type="text"
+                value={this.state.formInputText}
+                onChange={this.handleTheChangeForm}
+              />
+              <button type="submit">Submit</button>
+              <p>Input value: {this.state.formInputText}</p>
+              <p>Submitted value: {this.state.formInputTextSubmitted}</p>
+            </form>
+          </main>
+        </section>
 
-      <section>
-        <div onMouseMove={this.handleMouseMove}>
-          <h3>Mouse Position: </h3>
-          <p>x: {this.state.mousePositionX}</p>
-          <p>y: {this.state.mousePositionY}</p>
-        </div>
-      </section>
+        <section>
+          <div onMouseMove={this.handleMouseMove}>
+            <header>
+              <h3>Mouse Position: </h3>
+            </header>
+            <main>
+              <p>x: {this.state.mousePositionX}</p>
+              <p>y: {this.state.mousePositionY}</p>
+            </main>
+          </div>
+        </section>
 
       </>
     )
