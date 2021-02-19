@@ -4,6 +4,7 @@ body {
 }
 
 .new-card-container {
+  /* display: none; */
   background-color: #fff;
   border-radius: 6px;
   overflow: hidden;
@@ -27,8 +28,6 @@ body {
   width: 48px;
   vertical-align: middle;
   margin-right: 15px;
-  color: rebeccapurple;
-  font-size: inherit;
   position: relative;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -46,7 +45,7 @@ body {
   font-weight: normal;
   color: #fff;
   font-size: inherit;    
-  vertical-align: middle;
+  vertical-align: sub;
   margin: 12px 0px 0px 0px;
 }
 

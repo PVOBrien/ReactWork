@@ -94,6 +94,7 @@ class InputEase extends Component {
       <section>
         <h3>Moused Here:</h3>
         <button
+          id="insert"
           onClick = { this.hereToClick.bind(this) }
           onMouseDown = { this.handleHereMouseToDown } // left side of equal sign is the function, it is NOT potato.
           onMouseUp = { this.handleHereOnMouseUp }
@@ -105,7 +106,7 @@ class InputEase extends Component {
       </section>
 
       <section>
-        <p>HOWDY</p>
+        <h3>HOWDY</h3>
         <input
           type="text"
           onChange={this.handleOnChange}

@@ -24,7 +24,7 @@ class NewCard extends Component {
 
     return (
       <React.Fragment>
-        <section className="new-card-container">
+        <section className="new-card-container" id="profile-card">
           <header>
             <span initials={initials}></span>
             <h2>{theName}</h2>
