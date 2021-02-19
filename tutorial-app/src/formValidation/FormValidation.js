@@ -32,7 +32,17 @@ class FormValidation extends Component {
   handleOnSubmit = (e) => {
     e.preventDefault();
 
-    this.validateAllTheField()
+    console.log(this.validateAllTheField());
+
+    const isFormValid = this.validateAllTheField();
+
+    if (isFormValid) {
+      this.setState((state) => {
+        return {
+          submitted: state.submitted + 1
+        }
+      })
+    }
   }
 
   validateAllTheField() {
@@ -59,10 +69,20 @@ class FormValidation extends Component {
     this.setState({
       validationErrors: errors
     })
+
+    return Object.keys(errors).length === 0
+
   }
 
 
   render() {
+
+    const {
+      firstName: firstNameError,
+      feedback: feedbackError,
+      acceptedTerms: acceptedTermsError
+    } = this.state.validationErrors; // this whole code block allows for truncating otherwise long and needless repetition of object prefixes, instead just holding it all in a variable.s
+
     return (
       <>
         <section className="new-card-container">
@@ -71,7 +91,7 @@ class FormValidation extends Component {
           </header>
           <main>
             <form onSubmit={this.handleOnSubmit}>
-                <div className="error"> {this.state.validationErrors.firstName} </div>
+                <div className="error"> {firstNameError} </div>
               <label>
                 <input
                   type="text"
@@ -83,7 +103,7 @@ class FormValidation extends Component {
               </label>
               <br></br>
               <label>
-                <div className="error"> {this.state.validationErrors.feedback} </div>
+                <div className="error"> {feedbackError} </div>
                 <input
                   type="text"
                   name="feedback"
@@ -101,12 +121,12 @@ class FormValidation extends Component {
                   onChange={this.handleOnChange}
                 /> Terms: Accepted
               </label>
-                <span className="error"> {this.state.validationErrors.acceptedTerms} </span>
+                <span className="error"> {acceptedTermsError} </span>
               <br></br>
               <button name="submitButton">
                 Submit
               </button>
-              <p>Times Submitted: {this.state.submitted}</p>
+              <p>Times Submitted: {this.state.submitted} </p>
             </form>
           </main>
         </section>
