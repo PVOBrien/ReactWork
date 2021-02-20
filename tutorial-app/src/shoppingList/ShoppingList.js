@@ -10,6 +10,11 @@ class ShoppingList extends Component {
     this.state = {
       listItem: '',
       timesEntered: 0,
+      enteredListItems: [
+        { name: 'N64', id: '1', completed: false},
+        { name: 'N64', id: '2', completed: true},
+        { name: 'N64', id: '3', completed: false}
+      ],
       vErrors: {}
     }
 
@@ -29,7 +34,7 @@ class ShoppingList extends Component {
     // console.log("what is value: " + target.value);
 
     this.setState({
-      [name]: value
+      [name]: value // why is this not being "returned" like for the if(trueSubmit) code block?
     })
   }
 
@@ -40,7 +45,7 @@ class ShoppingList extends Component {
 
     if (trueSubmit) {
       this.setState((state) => {
-        return { timesEntered: state.timesEntered += 1 }
+        return { timesEntered: state.timesEntered += 1 } // why is "return" necessary? because it's in a deeper code block (e.g. the "if..."" statement?)
       })
     }
   }
@@ -50,6 +55,7 @@ class ShoppingList extends Component {
 
     if (!this.state.listItem) {
       errors['noItem'] = 'No Item Entered';
+      // add a random setState() here, see if it needs to be w/in a return statement.
     }
 
     this.setState({
@@ -65,6 +71,11 @@ class ShoppingList extends Component {
   // render it out below ===
 
   render() {
+
+    const {
+      enteredListItems
+    } = this.state // this all basically prepends what is after the equal sign to what is in the preceeding code block. 
+
     return (
       <>
         <section id="shopping-list">
@@ -76,7 +87,7 @@ class ShoppingList extends Component {
               <div className="error"> {this.state.vErrors.noItem}</div>
               <input
                 type="text"
-                name="listItem" // this is linked to value. not sure which direction.
+                name="listItem" // this is linked to value. not sure which direction. not yet certain why it's necessary or just assumed that name is value.
                 placeholder="Enter item"
                 value={this.state.listItem}
                 onChange={this.handleOnChange}>
