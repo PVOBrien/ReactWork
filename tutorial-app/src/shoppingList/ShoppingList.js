@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 
 class ShoppingList extends Component {
-
   // Constructor + state definitions below...
-
   constructor(props) {
     super(props)
 
     this.state = {
       listItem: '',
       enteredListItems: [
-        { name: 'N64', id: 'this-1', completed: false },
-        { name: 'Sega Genesis', id: 'this-2', completed: true },
-        { name: 'Playstation', id: 'this-3', completed: false }
+        { name: 'N64', thisId: 'this-1', completed: false },
+        { name: 'Sega Genesis', thisId: 'this-2', completed: true },
+        { name: 'Playstation', thisId: 'this-3', completed: false }
       ],
       vErrors: {},
       timesEntered: 0
@@ -47,7 +45,7 @@ class ShoppingList extends Component {
 
   handleCompletedToggle(e) {
     const target = e.target;
-    const itemindexValue = target.attributes.itemindex.value // TODO: build out "target". Makes this all more human readable
+    const itemindexValue = target.attributes.itemindex.value // Makes this all more human readable
     const index = parseInt(itemindexValue, 10) // from video "access buttons custom attributes". Also, this const index is NOT the same as the render index.
 
     console.log('Tog this: ' + index);
@@ -88,13 +86,15 @@ class ShoppingList extends Component {
 
       const newItem = {
         completed: false,
-        name: this.state.listItem
+        name: this.state.listItem,
+        thisId: this.state.enteredListItems.length+1 // watch out for "off-by-1" TODO: also 1) the tutorial does not cover this, and 2) React's console for this omission is pretty terrible "key doesn't exist" basically, didn't say where, or what, or which. Thanks to Michael Eclavia https://github.com/MichaelEclavea for the help. 
       }
 
       this.setState((state) => {
         return {
           timesEntered: state.timesEntered += 1, // why is "return" necessary? because it's in a deeper code block (e.g. the "if..."" statement?)? must be?
-          enteredListItems: [...state.enteredListItems, newItem] // the "..." must be a nifty way to just be to include everything in that array into the new/next/temp array, then do whatever to it/with it.
+          enteredListItems: [...state.enteredListItems, newItem], // the "..." must be a nifty way to just be to include everything in that array into the new/next/temp array, then do whatever to it/with it.
+          listItem: ''
         }
       })
     }
@@ -138,9 +138,9 @@ class ShoppingList extends Component {
               {
                 enteredListItems.map((item, index) => {
                   return (
-                    <li
-                      key={item.id} // key is "hidden" to html. doesn't show up in elements of browser console. Also using the item's ID, *NOT* the index because "this JSX is a little more complex..." video2.3 @2:27
-                      className={item.id} // className == class (css), and does show up in browser console elements.
+                    <li key={item.thisId}
+                    // key={item.id} // key is "hidden" to html. doesn't show up in elements of browser console. Also using the item's ID, *NOT* the index because "this JSX is a little more complex..." video2.3 @2:27
+                    className={"shopping-list-entry"} // className == class (css), and does show up in browser console elements.
                     >
                       <input
                         type="checkbox"
@@ -149,11 +149,13 @@ class ShoppingList extends Component {
                         itemindex={index} //alllowercase 'itemindex" because REACT DOCS. ???
                       />
                       <span>{item.name}</span>
+
                       <button
                         itemindex={index}
                         onClick={this.handleDelete}
                       >
-                        X</button>
+                        X
+                        </button>
                     </li>
                     // {console.log("what is item: " + item); } TODO: no way to console in render?
                   )
@@ -173,12 +175,11 @@ class ShoppingList extends Component {
                 Submit
                 </button>
             </form>
+            <p>Submitted {this.state.timesEntered} </p>
           </main>
-          <p>Submitted {this.state.timesEntered} </p>
         </section>
       </>
     )
-
   }
 }
 

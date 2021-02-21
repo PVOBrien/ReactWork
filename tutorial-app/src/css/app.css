@@ -63,3 +63,20 @@ section {
   font-size: small;
   margin-left: 15px;
 }
+
+.shopping-list-entry {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.shopping-list-entry span {
+  min-width: 216px;
+}
+
+/* Now You See Me / Now You Don't Below */
+.shopping-list-entry button {
+  visibility: hidden; }
+.shopping-list-entry:hover button {
+  visibility: visible;}
+/* Now You See Me / Now You Don't Below */
