@@ -20,13 +20,22 @@ class ShoppingList extends Component {
     this.handleCompletedToggle = this.handleCompletedToggle.bind(this);
     this.handleDelete = this.handleDelete.bind(this)
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
-    // handleOnSubmit uses arrow function
+    // handleOnSubmit *used* arrow function. NOTE: Tried to use an arrow function on this, and did not work. So: *something* is different between the two, they are not 100% interchangeable (to me, yet). Or I just had something coded wrong. Maybe used "this" when i should've used "e". :shrug:
     this.vErrorsCheck = this.vErrorsCheck.bind(this);
-
   }
   // ^^^ constructor + state ^^^
   // ===========================
   // functions, run code below
+
+  componentDidUpdate(prevProps, prevState) { // this runs whenever "this" component (aka class? state?) updates. Doesn't necessarily run anything, just whenever there is a change (of state), it offers a chance to do something with it. So it is not AN update, just that something WAS updated.
+    const prevStateJson = JSON.stringify(prevState.enteredListItems);
+    const updatedStateJson = JSON.stringify(this.state.enteredListItems)
+
+    if (prevStateJson !== updatedStateJson) {
+      console.log("Saving... " + updatedStateJson)
+      localStorage.setItem('listItems', updatedStateJson)
+    }
+  }
 
   handleOnChange = (e) => {
     const target = e.target;
@@ -51,7 +60,14 @@ class ShoppingList extends Component {
     console.log('Tog this: ' + index);
 
     const tempItemsState = [...this.state.enteredListItems]; // I'm hoping that having to constantly hold a temp state to properly update a state is just showing the inner workings, otherwise there could be a lot of tempState holding.
-    tempItemsState[index].completed = target.checked;
+    // tempItemsState[index].completed = target.checked; // and in 2.4 1:37, do find that this method is bad at best...
+
+    tempItemsState[index] = { // this whole thing is like AWS.mutate, but all "local"/client-side. In AWS, it's pulled down (the data), then we hold it "in state", then we make modifications to it, *then* upload it for it to be changed. 
+      ...tempItemsState[index], // must be included (here, at least) in order to pull in all properties/state of the object in question...
+      completed: target.checked // then this (and whatever else is after the first parameter), modifies/updates the object.
+    }
+
+    console.log(tempItemsState);
 
     this.setState({
       enteredListItems: tempItemsState
@@ -87,7 +103,7 @@ class ShoppingList extends Component {
       const newItem = {
         completed: false,
         name: this.state.listItem,
-        thisId: 'itemID-' + Date.now()
+        thisId: 'itemID-' + Date.now() // better way. the method below WOULD (not might) get seriously screwed up upon deleting and adding entries. The Date method ensures - save for time travel exceptions - that all new IDs will be unique. No moment is ever the same! 
         // thisId: this.state.enteredListItems.length+1 // watch out for "off-by-1" TODO: also 1) the tutorial does not cover this, and 2) React's console for this omission is pretty terrible "key doesn't exist" basically, didn't say where, or what, or which. Thanks to Michael Eclavia https://github.com/MichaelEclavea for the help. 
       }
 
