@@ -87,7 +87,8 @@ class ShoppingList extends Component {
       const newItem = {
         completed: false,
         name: this.state.listItem,
-        thisId: this.state.enteredListItems.length+1 // watch out for "off-by-1" TODO: also 1) the tutorial does not cover this, and 2) React's console for this omission is pretty terrible "key doesn't exist" basically, didn't say where, or what, or which. Thanks to Michael Eclavia https://github.com/MichaelEclavea for the help. 
+        thisId: 'itemID-' + Date.now()
+        // thisId: this.state.enteredListItems.length+1 // watch out for "off-by-1" TODO: also 1) the tutorial does not cover this, and 2) React's console for this omission is pretty terrible "key doesn't exist" basically, didn't say where, or what, or which. Thanks to Michael Eclavia https://github.com/MichaelEclavea for the help. 
       }
 
       this.setState((state) => {

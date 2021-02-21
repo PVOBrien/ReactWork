@@ -72,6 +72,9 @@ section {
 
 .shopping-list-entry span {
   min-width: 216px;
+  margin-right: 12px;
+  margin-left: 10px;
+  text-align: left;
 }
 
 /* Now You See Me / Now You Don't Below */
