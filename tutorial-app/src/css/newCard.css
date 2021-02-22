@@ -4,7 +4,7 @@ body {
 }
 /* display: none; */
 
-.new-card-container {
+.address-card {
   background-color: #fff;
   border-radius: 6px;
   overflow: hidden;
@@ -19,7 +19,7 @@ header {
   font-size: 19px;
 }
 
-.new-card-container header span {
+.address-card header span {
   display: inline-block;
   border-radius: 50%;
   background-color: aquamarine;
@@ -31,7 +31,30 @@ header {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.new-card-container header span:after {
+.address-card .favorite {
+  position: absolute;
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  right: 20px;
+  transform: translateY(-120%);
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.address-card .favorite:hover {
+  color: gold;
+}
+
+.address-card .favorite.active:after {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: gold;
+}
+
+.address-card header span:after {
   content: attr(initials);
   position: absolute;
   left: 50%;
@@ -39,7 +62,7 @@ header {
   transform: translateX(-50%) translateY(-50%);
 }
 
-.new-card-container h2 {
+.address-card h2 {
   display: inline-block;
   font-weight: normal;
   color: #fff;

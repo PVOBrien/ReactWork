@@ -37,6 +37,17 @@ class ShoppingList extends Component {
     }
   }
 
+  componentDidMount() {
+    const savedStatefromLS = localStorage.getItem('listItems');
+
+    if (savedStatefromLS) { // it's a null check!
+      this.setState({
+        enteredListItems: JSON.parse(savedStatefromLS) // weirds me out that it is ":" and not "=" to assign/set/define properties.
+      })
+    }
+  }
+
+
   handleOnChange = (e) => {
     const target = e.target;
     const name = e.target.name;
@@ -45,7 +56,7 @@ class ShoppingList extends Component {
     //   target.type === 'text' ? target.value : target.checked
     // )
 
-    // console.log("what is value: " + target.value);
+    console.log("what is value: " + target.value);
 
     this.setState({
       [name]: value // why is this not being "returned" like for the if(trueSubmit) code block?
@@ -57,9 +68,9 @@ class ShoppingList extends Component {
     const itemindexValue = target.attributes.itemindex.value // Makes this all more human readable
     const index = parseInt(itemindexValue, 10) // from video "access buttons custom attributes". Also, this const index is NOT the same as the render index.
 
-    console.log('Tog this: ' + index);
+    // console.log('Tog this: ' + index);
 
-    const tempItemsState = [...this.state.enteredListItems]; // I'm hoping that having to constantly hold a temp state to properly update a state is just showing the inner workings, otherwise there could be a lot of tempState holding.
+    const tempItemsState = [...this.state.enteredListItems]; // I'm hoping that having to constantly hold a temp state to properly update a state is just showing the inner workings, otherwise there could be a lot of tempState holding. The "..." is "spread" syntax ES6
     // tempItemsState[index].completed = target.checked; // and in 2.4 1:37, do find that this method is bad at best...
 
     tempItemsState[index] = { // this whole thing is like AWS.mutate, but all "local"/client-side. In AWS, it's pulled down (the data), then we hold it "in state", then we make modifications to it, *then* upload it for it to be changed. 
@@ -67,7 +78,7 @@ class ShoppingList extends Component {
       completed: target.checked // then this (and whatever else is after the first parameter), modifies/updates the object.
     }
 
-    console.log(tempItemsState);
+    // console.log(tempItemsState);
 
     this.setState({
       enteredListItems: tempItemsState
@@ -156,8 +167,8 @@ class ShoppingList extends Component {
                 enteredListItems.map((item, index) => {
                   return (
                     <li key={item.thisId}
-                    // key={item.id} // key is "hidden" to html. doesn't show up in elements of browser console. Also using the item's ID, *NOT* the index because "this JSX is a little more complex..." video2.3 @2:27
-                    className={"shopping-list-entry"} // className == class (css), and does show up in browser console elements.
+                      // key={item.id} // key is "hidden" to html. doesn't show up in elements of browser console. Also using the item's ID, *NOT* the index because "this JSX is a little more complex..." video2.3 @2:27
+                      className={"shopping-list-entry"} // className == class (css), and does show up in browser console elements.
                     >
                       <input
                         type="checkbox"

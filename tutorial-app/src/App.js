@@ -3,6 +3,7 @@ import NewCard from './NewCard.js';
 import InputEvents from './events/InputEvents';
 import FormValidation from './formValidation/FormValidation';
 import ShoppingList from './shoppingList/ShoppingList';
+import AddressBook from './addressBook/AddressBook';
 import './css/reset.css';
 import './css/app.css';
 import './css/newCard.css'; // it's CSS. it imports it all, no need to designate exactly *what* is being imported.
@@ -12,9 +13,10 @@ function App() {
     <>
       <div className="App">
         {/* <ShowButton /> */}
-        {/* <NewCard /> */}
+        <AddressBook />
+        <NewCard />
         {/* <InputEvents /> */}
-        <FormValidation />
+        {/* <FormValidation /> */}
       </div>
       <div>
         <ShoppingList />
