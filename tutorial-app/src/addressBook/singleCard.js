@@ -13,7 +13,10 @@ const ThisCard = (props) => {
       <header>
         <span initials={contact.initials}></span>
         <h2>{contact.fullName}</h2>
-        <div className={`favorite ${activeClass}`}>☆</div>
+        <div
+          className={`favorite ${activeClass}`}
+          onClick={ () => {props.handleFavoriteToggle(index) }} // how to pass all the details around for parent/child data updates.
+          >☆</div>
       </header>
 
       <main>
