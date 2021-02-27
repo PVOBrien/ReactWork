@@ -28,20 +28,18 @@ function App() {
             <li><Link to="/">Route message:Clear</Link></li>
             <li><Link to="/home">Home Slice</Link></li>
             <li><Link to="/about">About</Link></li>
-            <li><Link to="/about/paramUserIdHere">About ME</Link></li>
+            <li><Link to="/about/userIdHere">About ME</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
 
           <Switch>
 
             <Route path="/home" component={Home} />
-            <Route exact path="/" render={() => {
+            <Route exact path="/" render={() => { // / either use Switch, or exact path. Switch: specific comes before broad. Exact path: (atm) I don't think has that qualification.
               return <br></br> // so... ALWAYS include an actual path on the route. Or use "exact" in front of path?.
             }} />
 
-            <Route path="/about/:userId" render={({ match }) => { // either use Switch, or exact path. on switch, the specific comes before the broad, and exact path (atm) I don't think has that qualification.
-              return <h2>Me 3 "{match.params.userId}"" Me </h2> // check out how it follows the params.
-            }} />
+            <Route path="/about/:userId" component={About} />
 
             <Route path="/about" component={About}/>
             <Route path="/contact" component={Contact} />

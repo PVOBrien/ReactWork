@@ -1,8 +1,9 @@
 import React from 'react'
 
-const About = () => {
+const About = ({match}) => {
+  let who = match.params.userId || 'page'
   return (
-    <h2>About about oh yeah About</h2>
+    <h2>About "{who}" is the param</h2>
   )
 }
 
