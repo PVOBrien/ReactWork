@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'; // "as" is setting "router" as  alias
+import { BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom'; // "as" is setting "router" as  alias
 
 import ShowButton from './ShowButton';
 import NewCard from './NewCard.js';
@@ -28,20 +33,24 @@ function App() {
             <li><Link to="/">Route message:Clear</Link></li>
             <li><Link to="/home">Home Slice</Link></li>
             <li><Link to="/about">About</Link></li>
-            <li><Link to="/about/userIdHere">About ME</Link></li>
+            <li><Link to="/about/123">About ME</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
 
           <Switch>
 
             <Route path="/home" component={Home} />
+
             <Route exact path="/" render={() => { // / either use Switch, or exact path. Switch: specific comes before broad. Exact path: (atm) I don't think has that qualification.
               return <br></br> // so... ALWAYS include an actual path on the route. Or use "exact" in front of path?.
             }} />
 
-            <Route path="/about/:userId" component={About} />
+            <Redirect from="/about/:userId" to="/info/:userId" />  {/* easiest to have most exact routes above more generic routes */}
+            <Route path="/info/:userId" component={About} />
 
-            <Route path="/about" component={About}/>
+            <Redirect from="/about" to="info" />
+            <Route path="/info" component={About}/>
+
             <Route path="/contact" component={Contact} />
             <Route render={() => {
               return <h2>Error. No such path. Try again.</h2>
