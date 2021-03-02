@@ -29,7 +29,7 @@ class App extends Component {
           <hr />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/vehicle/:vehicleID" component={Vehicle} />
+            <Route path="/vehicle/:vehicleId" component={Vehicle} />
             <Route component={Error} />
           </Switch>
         </Router>
