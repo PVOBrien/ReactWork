@@ -11,8 +11,8 @@ class Vehicle extends Component {
 
   componentDidMount() { // this only loads on first refresh.
     const id = this.props.match.params.vehicleId;
-
     const savedVehicle = localStorage.getItem(`vehicle-${id}`)
+  
     if (savedVehicle) {
       this.setState({
         vehicle: JSON.parse(savedVehicle)
@@ -29,13 +29,13 @@ class Vehicle extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const prevPropsString = JSON.stringify(prevProps.match.params.vehicleId);
+    const prevPropsString = JSON.stringify(prevProps.match.params.vehicleId)
     const updatedPropsString = JSON.stringify(this.props.match.params.vehicleId)
 
     if (prevPropsString !== updatedPropsString) {
       const id = this.props.match.params.vehicleId;
-
       const savedVehicle = localStorage.getItem(`vehicle-${id}`)
+      
       if (savedVehicle) {
         this.setState({
           vehicle: JSON.parse(savedVehicle)
@@ -54,7 +54,7 @@ class Vehicle extends Component {
 
 
   render() {
-    const { vehicle } = this.state;
+    const { vehicle } = this.state
     return (
       <>
         <h3>Name: {vehicle.name} </h3>
